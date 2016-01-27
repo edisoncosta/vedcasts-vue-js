@@ -12,6 +12,7 @@ new Vue({
 
     data: {
         cervejarias: [],
+        all: [],
         openDetails: [],
         sortColumn: 'name',
         sortInverse: false,
@@ -57,9 +58,17 @@ new Vue({
         },
 
         doFilter: function(ev) {
+            var self = this;
 
-            this.$set('filterTerm', ev.currentTarget.value);
+            var filtered = self.all;
 
+            if (self.filterTerm != '') {
+                filtered = _.filter(self.all, function (cervejaria)
+                {
+                    return cervejaria.name.toLowerCase().indexOf(self.filterTerm.toLowerCase()) > -1
+                });
+            }
+            self.$set('cervejarias', filtered);
         }
     },
 
@@ -69,6 +78,7 @@ new Vue({
         self.$http.get('cervejarias.json', function(response)
         {
             self.cervejarias = response;
+            self.$set('all', self.cervejarias);
             //window.console.log(response);
         });
     }

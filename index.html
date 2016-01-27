@@ -20,7 +20,8 @@
         <input
                 type="text"
                 class="form-control"
-                v-on="keyup:doFilter | key 'enter'"
+                v-model="filterTerm"
+                v-on="keyup:doFilter"
                 placeholder="Digite o termo para filtrar a lista"
         />
     </div>
@@ -87,7 +88,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody v-repeat="cervejaria:cervejarias| filterBy filterTerm | orderBy sortColumn sortInverse">
+        <tbody v-repeat="cervejaria:cervejarias | orderBy sortColumn sortInverse">
             <tr>
                 <td>{{ cervejaria.name }}</td>
                 <td>{{ cervejaria.city }}</td>
