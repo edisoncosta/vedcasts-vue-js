@@ -26,7 +26,10 @@
                 <th>Atualizado em</th>
                 <th width="1%" nowrap>
                     <a href="#" v-on="click:openAllDetails">
-                        <i class="fa fa-plus-square"></i>
+                        <i class="fa"
+                           v-class="fa-plus-square:openDetails.length == 0,
+                                    fa-minus-square:openDetails.length > 0">
+                        </i>
                     </a>
                 </th>
             </tr>
@@ -57,6 +60,7 @@
 <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/node_modules/vue/dist/vue.js"></script>
 <script src="/node_modules/vue-resource/dist/vue-resource.js"></script>
+<script src="lodash.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
