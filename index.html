@@ -17,13 +17,29 @@
     //-->
 
     <div class="well">
-        <input
-                type="text"
-                class="form-control"
-                v-model="filterTerm"
-                v-on="keyup:doFilter"
-                placeholder="Digite o termo para filtrar a lista"
-        />
+        <div class="row">
+            <div class="col-md-6">
+                <input
+                        type="text"
+                        class="form-control"
+                        v-model="filterTerm"
+                        v-on="keyup:doFilter"
+                        placeholder="Digite o termo para filtrar a lista"
+                />
+            </div>
+            <div class="col-md-6">
+                <select
+                        class="form-control"
+                        v-model="columnsToFilter"
+                        multiple
+                    >
+                    <option value="name">Nome</option>
+                    <option value="city">Cidade</option>
+                    <option value="state">Estado</option>
+                    <option value="country">País</option>
+                </select>
+            </div>
+        </div>
     </div>
 
     <table class="table table-bordered table-hover table-striped">
