@@ -14,7 +14,8 @@ new Vue({
         cervejarias: [],
         openDetails: [],
         sortColumn: 'name',
-        sortInverse: false
+        sortInverse: false,
+        filterTerm: ''
     },
 
     methods: {
@@ -52,6 +53,12 @@ new Vue({
             self.sortColumn = column;
 
             self.$set("sortInverse", !self.sortInverse);
+
+        },
+
+        doFilter: function(ev) {
+
+            this.$set('filterTerm', ev.currentTarget.value);
 
         }
     },
