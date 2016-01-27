@@ -10,9 +10,11 @@
 <div class="container" id="beerApp">
     <h1>Bem vindo à série Vue.Js!</h1>
 
+    <!--
     <div class="well">
         <pre>{{ $data.openDetails | json }}</pre>
     </div>
+    //-->
 
     <table class="table table-bordered table-hover table-striped">
         <thead>
@@ -38,7 +40,10 @@
                 <td>{{ cervejaria.last_mod }}</td>
                 <td>
                     <a href="#" v-on="click:doOpenDetails($event, cervejaria.id)">
-                        <i class="fa fa-plus-square"></i>
+                        <i class="fa"
+                           v-class="fa-plus-square:openDetails.indexOf(cervejaria.id) == -1,
+                                    fa-minus-square:openDetails.indexOf(cervejaria.id) > -1">
+                        </i>
                     </a>
                 </td>
             </tr>
