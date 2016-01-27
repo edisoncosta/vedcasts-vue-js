@@ -20,19 +20,53 @@
         <thead>
             <tr>
                 <th >
-                    <a href="#" v-on="click:doSort($event, 'name')">Nome</a>
+                    <a href="#" v-on="click:doSort($event, 'name')">
+                        <i class="fa fa-fw fa-sort"
+                        v-class="
+                        fa-sort-amount-asc:sortColumn == 'name' && sortInverse == false,
+                        fa-sort-amount-desc:sortColumn == 'name' && sortInverse == true
+                        "></i>
+                        Nome
+                    </a>
                 </th>
                 <th >
-                    <a href="#" v-on="click:doSort($event, 'city')">Cidade</a>
+                    <a href="#" v-on="click:doSort($event, 'city')">
+                        <i class="fa fa-fw fa-sort"
+                           v-class="
+                        fa-sort-amount-asc:sortColumn == 'city' && sortInverse == false,
+                        fa-sort-amount-desc:sortColumn == 'city' && sortInverse == true
+                        "></i>
+                        Cidade
+                    </a>
                 </th>
                 <th >
-                    <a href="#" v-on="click:doSort($event, 'state')">Estado</a>
+                    <a href="#" v-on="click:doSort($event, 'state')">
+                        <i class="fa fa-fw fa-sort" v-class="
+                        fa-sort-amount-asc:sortColumn == 'state' && sortInverse == false,
+                        fa-sort-amount-desc:sortColumn == 'state' && sortInverse == true
+                        "></i>
+                        Estado
+                    </a>
                 </th>
                 <th >
-                    <a href="#" v-on="click:doSort($event, 'country')">País</a>
+                    <a href="#" v-on="click:doSort($event, 'country')">
+                        <i class="fa fa-fw fa-sort"
+                           v-class="
+                        fa-sort-amount-asc:sortColumn == 'country' && sortInverse == false,
+                        fa-sort-amount-desc:sortColumn == 'country' && sortInverse == true
+                        "></i>
+                        País
+                    </a>
                 </th>
                 <th >
-                    <a href="#" v-on="click:doSort($event, 'last_mod')">Atualizado em</a>
+                    <a href="#" v-on="click:doSort($event, 'last_mod')">
+                        <i class="fa fa-fw fa-sort"
+                           v-class="
+                        fa-sort-amount-asc:sortColumn == 'last_mod' && sortInverse == false,
+                        fa-sort-amount-desc:sortColumn == 'last_mod' && sortInverse == true
+                        "></i>
+                        Atualizado em
+                    </a>
                 </th>
                 <th width="1%" nowrap>
                     <a href="#" v-on="click:openAllDetails">
