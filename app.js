@@ -3,7 +3,9 @@ new Vue({
 
     data: {
         cervejarias: [],
-        openDetails: []
+        openDetails: [],
+        sortColumn: 'name',
+        sortInverse: false
     },
 
     methods: {
@@ -32,6 +34,16 @@ new Vue({
             } else {
                 self.$set('openDetails', _.pluck(self.cervejarias, 'id'));
             }
+        },
+
+        doSort: function(ev, column) {
+            ev.preventDefault();
+            var self = this;
+
+            self.sortColumn = column;
+
+            self.$set("sortInverse", !self.sortInverse);
+
         }
     },
 
