@@ -24,17 +24,13 @@ new Vue({
 
         openAllDetails: function(ev){
             ev.preventDefault();
-            var self = this, ids = [];
-
-            self.cervejarias.map(function(cervejaria){
-                ids.push(cervejaria.id);
-            });
+            var self = this;
 
             //window.console.log(ids);
             if (self.openDetails.length > 0){
                 self.$set('openDetails', []);
             } else {
-                self.$set('openDetails', ids);
+                self.$set('openDetails', _.pluck(self.cervejarias, 'id'));
             }
         }
     },
