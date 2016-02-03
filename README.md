@@ -4,3 +4,5 @@ Aplicativo desenvolvido a partir das aulas publicadas pelo grande Vedovelli no w
 ```
 npm install
 ```
+
+http://vedcasts.vue.js.lokaquadras.com.br/
