@@ -84,5 +84,14 @@ new Vue({
             self.$set('all', self.cervejarias);
             //window.console.log(response);
         });
+
+        $(self.$$.columnsToFilterSelect).select2({
+            placeholder: 'Selecionar uma ou mais colunar para filtrar'
+        }).on('change', function(){
+
+            self.$set('columnsToFilter', $(this).val());
+
+        });
+        //window.console.log()
     }
 });
