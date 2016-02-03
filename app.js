@@ -11,14 +11,15 @@ new Vue({
     el: '#beerApp',
 
     data: {
-        cervejarias: [],
+        select2: null,
+        visibleColumns: ['name', 'last_mod'],
+        columnsToFilter: [],
+        filterTerm: '',
         all: [],
+        cervejarias: [],
         openDetails: [],
         sortColumn: 'name',
-        sortInverse: false,
-        filterTerm: '',
-        columnsToFilter: [],
-        visibleColumns: ['name', 'last_mod']
+        sortInverse: false
     },
 
     methods: {
@@ -73,6 +74,21 @@ new Vue({
                 });
             }
             self.$set('cervejarias', filtered);
+        },
+
+        doResetAll: function(ev) {
+
+            var self = this;
+            self.$set('visibleColumns',['name', 'last_mod']);
+            self.$set('columnsToFilter', []);
+            self.$set('filterTerm', '');
+            self.$set('cervejarias', self.all);
+            self.$set('openDetails', []);
+            self.$set('sortColumn', 'name')
+            self.$set('sortInverse', false);
+
+            //Set Select empty value and fire event change
+            self.select2.val('').trigger('change');
         }
     },
 
@@ -86,12 +102,10 @@ new Vue({
             //window.console.log(response);
         });
 
-        $(self.$$.columnsToFilterSelect).select2({
+        self.select2 = $(self.$$.columnsToFilterSelect).select2({
             placeholder: 'Selecionar uma ou mais colunar para filtrar'
         }).on('change', function(){
-
             self.$set('columnsToFilter', $(this).val());
-
         });
         //window.console.log()
     }

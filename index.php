@@ -34,6 +34,11 @@
                     <option value="last_mod">Data</option>
                 </select>
             </div>
+            <div class="well">
+                <button type="button" v-on="click:doResetAll" class="btn btn-default btn-clock">
+                    Reset Geral
+                </button>
+            </div>
         </div>
         <div class="col-md-10">
             <div class="well">
