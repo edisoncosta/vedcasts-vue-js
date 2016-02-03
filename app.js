@@ -17,7 +17,8 @@ new Vue({
         sortColumn: 'name',
         sortInverse: false,
         filterTerm: '',
-        columnsToFilter: []
+        columnsToFilter: [],
+        visibleColumns: ['name', 'last_mod']
     },
 
     methods: {
