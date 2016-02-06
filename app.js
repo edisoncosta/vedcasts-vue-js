@@ -164,7 +164,7 @@ new Vue({
             Vue.set(self.interaction,'filterTerm', '');
             Vue.set(self.interaction,'openDetails', []);
             Vue.set(self.interaction,'sortColumn', 'name')
-            Vue.set(self.interaction,'sortInverse', false);
+            Vue.set(self.interaction,'sortInverse', 0);
 
             //Set Select empty value and fire event change
             self.controls.select2.val('').trigger('change');
