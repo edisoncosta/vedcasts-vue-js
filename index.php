@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.css"/>
     <link rel="stylesheet" href="/node_modules/select2/dist/css/select2.css"/>
 </head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
 <body>
 <div class="container" id="beerApp">
     <h1>Bem vindo à série Vue.Js!</h1>
@@ -18,7 +23,7 @@
     //-->
 
 
-    <div class="row">
+    <div class="row" v-cloak>
         <div class="col-md-2">
             <div class="well">
                 <label>Colunas Visiveis</label>
