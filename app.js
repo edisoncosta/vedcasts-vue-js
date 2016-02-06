@@ -84,7 +84,8 @@ new Vue({
             self.cervejarias.$set('list', self.cervejarias.paginated[self.pagination.currentPage-1]);
         },
 
-        doOpenDetails: function (ev, id) {
+        doOpenDetails: function (ev, id)
+        {
 
             ev.preventDefault();
 
@@ -100,7 +101,8 @@ new Vue({
             }
         },
 
-        openAllDetails: function (ev) {
+        openAllDetails: function (ev)
+        {
             ev.preventDefault();
 
             var self = this;
@@ -112,7 +114,8 @@ new Vue({
             }
         },
 
-        doSort: function (ev, column) {
+        doSort: function (ev, column)
+        {
             ev.preventDefault();
 
             var self = this;
@@ -122,7 +125,8 @@ new Vue({
             self.interaction.$set("sortInverse", !self.interaction.sortInverse);
         },
 
-        doFilter: function (ev) {
+        doFilter: function (ev)
+        {
             var self = this,
 
                 filtered = self.cervejarias.all;
@@ -138,7 +142,8 @@ new Vue({
             self.setPaginationData(filtered);
         },
 
-        doResetAll: function (ev) {
+        doResetAll: function (ev)
+        {
             var self = this;
 
             self.interaction.$set('visibleColumns', ['name', 'last_mod']);
@@ -167,7 +172,8 @@ new Vue({
             self.pagination.$set('currentPage', 1);
         },
 
-        new: function(ev) {
+        new: function(ev)
+        {
             var self = this;
             self.cervejaria.name = '';
             self.cervejaria.city = '';
@@ -178,7 +184,8 @@ new Vue({
             $(self.$$.modal).modal('show');
         },
 
-        edit: function(ev, cervejaria) {
+        edit: function(ev, cervejaria)
+        {
             ev.preventDefault();
             var self = this;
 
@@ -191,7 +198,8 @@ new Vue({
             $(self.$$.modal).modal('show');
         },
 
-        save: function(ev) {
+        save: function(ev)
+        {
             ev.preventDefault();
             var self = this;
             // self.$http.post('url do servico', cervejaria, function(response)
@@ -205,7 +213,8 @@ new Vue({
         }
     },
 
-    ready: function () {
+    ready: function ()
+    {
         var self = this;
 
         self.$http.get('cervejarias.json').then(function (response) {
