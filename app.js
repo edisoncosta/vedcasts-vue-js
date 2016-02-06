@@ -9,16 +9,24 @@ new Vue({
     el: '#beerApp',
 
     data: {
+        cervejaria: {
+            name: '',
+            city: '',
+            state: '',
+            country: '',
+            descript: ''
+        },
         cervejarias: {
             all: [],
             list: [],
         },
         pagination: {
+            perPage: 10,
             currentPage: 1,
             totalPages: 0,
             totalItems: 0,
             pageNumbers: [],
-            perPage: 10,
+            visibleNumbers: 3,
             paginated: []
         },
         interaction: {
@@ -157,6 +165,43 @@ new Vue({
             self.pagination.$set('totalPages',  Math.ceil(list.length / self.pagination.perPage));
             self.pagination.$set('pageNumbers', _.range(1, self.pagination.totalPages + 1));
             self.pagination.$set('currentPage', 1);
+        },
+
+        new: function(ev) {
+            var self = this;
+            self.cervejaria.name = '';
+            self.cervejaria.city = '';
+            self.cervejaria.state = '';
+            self.cervejaria.country = '';
+            self.cervejaria.descript = '';
+
+            $(self.$$.modal).modal('show');
+        },
+
+        edit: function(ev, cervejaria) {
+            ev.preventDefault();
+            var self = this;
+
+            self.cervejaria.name = cervejaria.name;
+            self.cervejaria.city = cervejaria.city;
+            self.cervejaria.state = cervejaria.state;
+            self.cervejaria.country = cervejaria.country;
+            self.cervejaria.descript = cervejaria.descript;
+
+            $(self.$$.modal).modal('show');
+        },
+
+        save: function(ev) {
+            ev.preventDefault();
+            var self = this;
+            // self.$http.post('url do servico', cervejaria, function(response)
+            // {
+
+            // });
+
+            $(self.$$.modal).modal('hide');
+            window.alert('Cervejaria salva, seu bebum!');
+            window.console.log(JSON.stringify(self.cervejaria));
         }
     },
 
