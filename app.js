@@ -35,7 +35,7 @@ new Vue({
             filterTerm: '',
             openDetails: [],
             sortColumn: 'name',
-            sortInverse: false
+            sortInverse: 0
         },
         controls: {
             select2: null,
@@ -122,7 +122,7 @@ new Vue({
 
             self.interaction.sortColumn = column;
 
-            self.interaction.$set("sortInverse", !self.interaction.sortInverse);
+            self.interaction.$set("sortInverse", self.interaction.sortInverse == 0 ? -1 : 0);
         },
 
         doFilter: function (ev)
