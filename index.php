@@ -57,8 +57,6 @@
         </div><!-- /.modal -->
     </form>
 
-
-
     <h1>Bem vindo à série Vue.Js!</h1>
 
     <!--
