@@ -17,7 +17,9 @@ new Vue({
             currentPage: 1,
             totalPages: 0,
             totalItems: 0,
-            pageNumbers: []
+            pageNumbers: [],
+            perPage: 6,
+            paginated: []
         },
         interaction: {
             visibleColumns: ['name', 'last_mod'],
@@ -33,6 +35,43 @@ new Vue({
     },
 
     methods: {
+
+        page: function(ev, page)
+        {
+            ev.preventDefault();
+            var self = this;
+        },
+
+        next: function(ev)
+        {
+            ev.preventDefault();
+            var self = this;
+            console.log('next');
+
+            if (self.pagination.currentPage == self.pagination.totalPages)
+            {
+                return false;
+            }
+
+            self.pagination.$set('currentPage', self.pagination.currentPage + 1);
+            self.cervejarias.$set('list', self.cervejarias.paginated[self.pagination.currentPage-1]);
+        },
+
+        previous: function(ev)
+        {
+            ev.preventDefault();
+            var self = this;
+            console.log('prev');
+
+            if (self.pagination.currentPage == 1)
+            {
+                return false;
+            }
+
+            self.pagination.$set('currentPage', self.pagination.currentPage - 1);
+            self.cervejarias.$set('list', self.cervejarias.paginated[self.pagination.currentPage-1]);
+        },
+
         doOpenDetails: function (ev, id) {
 
             ev.preventDefault();
@@ -107,8 +146,17 @@ new Vue({
         var self = this;
 
         self.$http.get('cervejarias.json').then(function (response) {
-            self.cervejarias.$set('all', response.data);
-            self.cervejarias.$set('list', response.data);
+
+            var chunk;
+
+            chunk = _.chunk(response.data, self.pagination.perPage);
+
+            self.cervejarias.$set('all'      , response.data);
+            self.cervejarias.$set('paginated', chunk);
+            self.cervejarias.$set('list'     , chunk[0]);
+
+            self.pagination.$set('totalItems',  response.data.length);
+            self.pagination.$set('totalPages',  Math.ceil(response.data.length / self.pagination.perPage));
         });
 
         self.controls.select2 = $(self.$$.columnsToFilterSelect).select2({

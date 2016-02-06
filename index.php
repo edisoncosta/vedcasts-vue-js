@@ -160,6 +160,19 @@
                 </tr>
                 </tbody>
             </table>
+
+            <p class="text-center">
+                [
+                <a href="#" v-on="click:previous">anterior</a>
+                |
+                <a href="#" v-on="click:next">proxima</a>
+                ]
+            </p>
+
+            <div class="well">
+                <pre>{{ $data.pagination | json }}</pre>
+            </div>
+
         </div>
     </div>
 </div>
