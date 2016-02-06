@@ -27,7 +27,8 @@ new Vue({
             totalItems: 0,
             pageNumbers: [],
             visibleNumbers: 3,
-            paginated: []
+            paginated: [],
+            lastResult:[]
         },
         interaction: {
             visibleColumns: ['name', 'last_mod'],
@@ -118,11 +119,23 @@ new Vue({
         {
             ev.preventDefault();
 
-            var self = this;
+            var self = this,
+                ordered,
+                order;
 
             self.interaction.sortColumn = column;
 
-            Vue.set(self.interaction, "sortInverse", self.interaction.sortInverse == 0 ? -1 : 0);
+            order = self.interaction.sortInverse == 0 ? -1 : 0;
+
+            Vue.set(self.interaction, "sortInverse", order);
+
+            ordered = _.sortBy(self.pagination.lastResult, _.property([column]));
+
+            if (order == -1) {
+                ordered = ordered.reverse();
+            }
+
+            self.setPaginationData(ordered);
         },
 
         doFilter: function (ev)
@@ -163,6 +176,7 @@ new Vue({
             var self = this,
                chunk = _.chunk(list, self.pagination.perPage);
 
+            Vue.set(self.pagination,  'lastResult', list);
             Vue.set(self.cervejarias, 'paginated'  , chunk);
             Vue.set(self.cervejarias, 'list'       , chunk[0]);
             Vue.set(self.pagination,  'totalItems' , list.length);
