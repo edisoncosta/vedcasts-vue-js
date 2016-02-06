@@ -161,17 +161,25 @@
                 </tbody>
             </table>
 
-            <p class="text-center">
-                [
-                <a href="#" v-on="click:previous">anterior</a>
-                |
-                <a href="#" v-on="click:next">proxima</a>
-                ]
-            </p>
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous" v-on="click:previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
 
-            <div class="well">
-                <pre>{{ $data.pagination | json }}</pre>
-            </div>
+                    <li v-repeat="pagination.pageNumbers">
+                        <a href="#" v-on="click:page($event, $value)">{{ $value }}</a>
+                    </li>
+
+                    <li>
+                        <a href="#" aria-label="Next" v-on="click:next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
         </div>
     </div>

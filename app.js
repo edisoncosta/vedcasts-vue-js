@@ -39,14 +39,18 @@ new Vue({
         page: function(ev, page)
         {
             ev.preventDefault();
+
             var self = this;
+
+            self.pagination.$set('currentPage', page);
+            self.cervejarias.$set('list', self.cervejarias.paginated[self.pagination.currentPage-1]);
         },
 
         next: function(ev)
         {
             ev.preventDefault();
+
             var self = this;
-            console.log('next');
 
             if (self.pagination.currentPage == self.pagination.totalPages)
             {
@@ -60,8 +64,8 @@ new Vue({
         previous: function(ev)
         {
             ev.preventDefault();
+
             var self = this;
-            console.log('prev');
 
             if (self.pagination.currentPage == 1)
             {
@@ -157,6 +161,8 @@ new Vue({
 
             self.pagination.$set('totalItems',  response.data.length);
             self.pagination.$set('totalPages',  Math.ceil(response.data.length / self.pagination.perPage));
+
+            self.pagination.$set('pageNumbers', _.range(1, self.pagination.totalPages + 1));
         });
 
         self.controls.select2 = $(self.$$.columnsToFilterSelect).select2({
