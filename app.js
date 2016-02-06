@@ -18,7 +18,7 @@ new Vue({
             totalPages: 0,
             totalItems: 0,
             pageNumbers: [],
-            perPage: 6,
+            perPage: 10,
             paginated: []
         },
         interaction: {
@@ -127,7 +127,7 @@ new Vue({
                 });
             }
 
-            self.cervejarias.$set('list', filtered);
+            self.setPaginationData(filtered);
         },
 
         doResetAll: function (ev) {
@@ -136,13 +136,27 @@ new Vue({
             self.interaction.$set('visibleColumns', ['name', 'last_mod']);
             self.interaction.$set('columnsToFilter', []);
             self.interaction.$set('filterTerm', '');
-            self.cervejarias.$set('list', self.cervejarias.all);
+
             self.interaction.$set('openDetails', []);
             self.interaction.$set('sortColumn', 'name')
             self.interaction.$set('sortInverse', false);
 
             //Set Select empty value and fire event change
             self.controls.select2.val('').trigger('change');
+            self.setPaginationData(self.cervejarias.all);
+        },
+
+        setPaginationData: function(list)
+        {
+            var self = this,
+               chunk = _.chunk(list, self.pagination.perPage);
+
+            self.cervejarias.$set('paginated', chunk);
+            self.cervejarias.$set('list'     , chunk[0]);
+            self.pagination.$set('totalItems',  list.length);
+            self.pagination.$set('totalPages',  Math.ceil(list.length / self.pagination.perPage));
+            self.pagination.$set('pageNumbers', _.range(1, self.pagination.totalPages + 1));
+            self.pagination.$set('currentPage', 1);
         }
     },
 
@@ -150,19 +164,8 @@ new Vue({
         var self = this;
 
         self.$http.get('cervejarias.json').then(function (response) {
-
-            var chunk;
-
-            chunk = _.chunk(response.data, self.pagination.perPage);
-
-            self.cervejarias.$set('all'      , response.data);
-            self.cervejarias.$set('paginated', chunk);
-            self.cervejarias.$set('list'     , chunk[0]);
-
-            self.pagination.$set('totalItems',  response.data.length);
-            self.pagination.$set('totalPages',  Math.ceil(response.data.length / self.pagination.perPage));
-
-            self.pagination.$set('pageNumbers', _.range(1, self.pagination.totalPages + 1));
+            self.cervejarias.$set('all', response.data);
+            self.setPaginationData(response.data);
         });
 
         self.controls.select2 = $(self.$$.columnsToFilterSelect).select2({

@@ -161,19 +161,21 @@
                 </tbody>
             </table>
 
-            <nav>
+            <nav class="text-center">
                 <ul class="pagination">
-                    <li>
+                    <li
+                        v-class="disabled:pagination.currentPage == 1">
                         <a href="#" aria-label="Previous" v-on="click:previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-
-                    <li v-repeat="pagination.pageNumbers">
+                    <li
+                        v-repeat="pagination.pageNumbers"
+                        v-class="active:$value == pagination.currentPage">
                         <a href="#" v-on="click:page($event, $value)">{{ $value }}</a>
                     </li>
-
-                    <li>
+                    <li
+                        v-class="disabled:pagination.currentPage == pagination.totalPages">
                         <a href="#" aria-label="Next" v-on="click:next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
