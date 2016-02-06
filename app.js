@@ -180,7 +180,7 @@ new Vue({
             self.cervejaria.country = '';
             self.cervejaria.descript = '';
 
-            $(self.$$.modal).modal('show');
+            $(self.$els.modal).modal('show');
         },
 
         edit: function(ev, cervejaria)
@@ -194,7 +194,7 @@ new Vue({
             self.cervejaria.country = cervejaria.country;
             self.cervejaria.descript = cervejaria.descript;
 
-            $(self.$$.modal).modal('show');
+            $(self.$els.modal).modal('show');
         },
 
         save: function(ev)
@@ -206,7 +206,7 @@ new Vue({
 
             // });
 
-            $(self.$$.modal).modal('hide');
+            $(self.$els.modal).modal('hide');
             window.alert('Cervejaria salva, seu bebum!');
             window.console.log(JSON.stringify(self.cervejaria));
         }
@@ -221,7 +221,7 @@ new Vue({
             self.setPaginationData(response.data);
         });
 
-        self.controls.select2 = $(self.$$.columnsToFilterSelect).select2({
+        self.controls.select2 = $(self.$els.columnsToFilterSelect).select2({
             placeholder: 'Selecionar uma ou mais colunar para filtrar'
         }).on('change', function () {
             Vue.set(self.interaction,'columnsToFilter', $(this).val());
