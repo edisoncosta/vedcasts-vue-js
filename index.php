@@ -144,8 +144,9 @@
                         </a>
                     </th>
                     <th v-show="interaction.visibleColumns.indexOf('state') >  -1">
-                        <i class="fa fa-fw fa-sort"
-                           v-bind:class="{
+                        <a href="#" v-on:click="doSort($event, 'state')">
+                            <i class="fa fa-fw fa-sort"
+                               v-bind:class="{
                         'fa-sort-amount-asc':interaction.sortColumn == 'state' && interaction.sortInverse == 0,
                         'fa-sort-amount-desc':interaction.sortColumn == 'state' && interaction.sortInverse == -1
                         }"></i>
